@@ -288,7 +288,7 @@ def login_handler():
     }
     """
     username, passwd = parse_json_form('login')
-    if passwd is '':
+    if passwd == '':
         return json_detail_render(301)
     code, data = AuthBusiness.login(username, passwd)
 

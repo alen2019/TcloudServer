@@ -8,7 +8,7 @@ start_apps(){
     for key in ${!map[@]} ;
     do
         echo start $key : ${map[$key]}
-        nohup python  -m apps.$key.run >logs/$key.log 2>&1 &
+        nohup /home/alen/openSourceProject/tc/TcloudServer/venv/bin/python  -m apps.$key.run >logs/$key.log 2>&1 &
     done
 }
 

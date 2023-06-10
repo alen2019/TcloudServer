@@ -96,7 +96,7 @@ class BoardBusiness(object):
         )
         if projectid:
             ret = ret.filter(TaskCase.project_id == projectid)
-        if iscreator is 1:
+        if iscreator == 1:
             ret = ret.filter(TaskCase.handler == userid)
         else:
             ret = ret.filter(TaskCase.executor == userid)

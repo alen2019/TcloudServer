@@ -3,7 +3,7 @@ from flask import request, g
 from werkzeug.exceptions import HTTPException
 
 # from apps.public.daos.guest import record_guest
-# from library.api.db import t_redis
+from library.api.db import t_redis
 from library.api.exceptions import Error, NotLoginException
 from library.api.parse import format_response
 # from library.serverchan import send2serverchan
@@ -66,6 +66,7 @@ def t_middleware(app):
         }
         # 操作限制以及未登录
         if code in WARN_CODE:
+            app.logger.warn(code)
             app.logger.warn('')
         else:
             app.logger.error('')

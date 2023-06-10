@@ -37,23 +37,32 @@ class AuthBusiness(object):
 
     @classmethod
     def login(cls, username, password):
+        print('start loging')
         ret = User.query.filter_by(
             name=username, password=parse_pwd(password),
             status=User.ACTIVE).all()
         if len(ret) == 0:
             return 303, []
         userid = ret[0].id
+        current_app.logger.info(userid)
         userdetail = UserBusiness.query_json_by_id(userid)
         projectid = UserBusiness.query_project_by_userid(userid)
+        current_app.logger.info('get projectid pass')
         if userdetail:
             userdetail[0]['projectid'] = projectid
+            current_app.logger.info('userdetail[0]',userdetail[0])
             token = cls.jwt_b_encode(userdetail[0]).decode('utf-8')
             data = dict(token=token)
             try:
+                current_app.logger.info('try======')
                 res = User.query.filter(User.id == userid, User.status == User.ACTIVE).first()
                 TrackUserBusiness.user_track(res)
+                current_app.logger.info('end try======')
             except Exception as e:
                 current_app.logger.info(e)
+            current_app.logger.info('datadatadata')
+            current_app.logger.info(data)
+            current_app.logger.info('end datadatadata')
             return 0, data
         else:
             return 413, []

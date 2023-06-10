@@ -52,7 +52,7 @@ class WxLoginBusiness(object):
         ret = requests.get(url=url)
         current_app.logger.info(ret.text)
         r = json.loads(ret.text)
-        if r['errcode'] is 0:
+        if r['errcode'] == 0:
             # acc = Config.query.filter(Config.module == 'access_token', Config.module_type == 1).first()
             access_token_info = cls.public_trpc.requests('get', '/public/config',
                                                          {'module': 'access_token', 'module_type': 1, 'is_all': 1})
@@ -83,7 +83,7 @@ class WxLoginBusiness(object):
         ret = requests.get(url=url)
         current_app.logger.info(ret.text)
         r = json.loads(ret.text)
-        if r['errcode'] is 0:
+        if r['errcode'] == 0:
             if 'UserId' in r.keys():
                 return r['errcode'], r['UserId']
             return 102, ''
@@ -108,7 +108,7 @@ class WxLoginBusiness(object):
         ret = requests.get(url=url)
         current_app.logger.info(ret.text)
         r = json.loads(ret.text)
-        if r['errcode'] is 0:
+        if r['errcode'] == 0:
             uid = r['userid']
             nickname = r['name']
             email = r['email']

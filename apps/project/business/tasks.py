@@ -235,10 +235,10 @@ class TaskBusiness(object):
     def status_switch(cls, id, mstatus):
         try:
             taskcase = TaskCase.query.filter(TaskCase.status == TaskCase.ACTIVE, TaskCase.task_id == id).all()
-            if taskcase and int(mstatus) is 2:
+            if taskcase and int(mstatus) == 2:
                 return 106, '任务用例未全部执行！'
             task = Task.query.get(id)
-            if mstatus is 1:
+            if mstatus == 1:
                 current_app.logger.info('task remove,taskcase remove too.')
                 for case in taskcase:
                     case.status = 1

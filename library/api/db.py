@@ -1,12 +1,12 @@
 from contextlib import contextmanager
 from datetime import datetime
 
-# from flask_caching import Cache
+from flask_caching import Cache
 from flask_sqlalchemy import SQLAlchemy as BaseSQLAlchemy
-# from redis import StrictRedis
+from redis import StrictRedis
 
 from library.api.exceptions import SaveObjectException
-# from public_config import REDIS_HOST, REDIS_PORT, REDIS_DB, REDIS_PASSWORD
+from public_config import REDIS_HOST, REDIS_PORT, REDIS_DB, REDIS_PASSWORD
 
 
 class SQLAlchemy(BaseSQLAlchemy):
@@ -25,17 +25,17 @@ class SQLAlchemy(BaseSQLAlchemy):
 db = SQLAlchemy()
 
 # redis
-# t_redis = StrictRedis(host=REDIS_HOST, port=REDIS_PORT, db=REDIS_DB, password=REDIS_PASSWORD, decode_responses=True)
+t_redis = StrictRedis(host=REDIS_HOST, port=REDIS_PORT, db=REDIS_DB, password=REDIS_PASSWORD, decode_responses=True)
 
 # 缓存，依赖redis
-# cache = Cache(
-#     config={
-#         'CACHE_TYPE': 'redis',
-#         'CACHE_REDIS_HOST': REDIS_HOST,
-#         'CACHE_REDIS_PORT': REDIS_PORT,
-#         'CACHE_REDIS_PASSWORD': REDIS_PASSWORD,
-#         'CACHE_REDIS_DB': REDIS_DB
-#     })
+cache = Cache(
+    config={
+        'CACHE_TYPE': 'redis',
+        'CACHE_REDIS_HOST': REDIS_HOST,
+        'CACHE_REDIS_PORT': REDIS_PORT,
+        'CACHE_REDIS_PASSWORD': REDIS_PASSWORD,
+        'CACHE_REDIS_DB': REDIS_DB
+    })
 
 
 class EntityModel(db.Model):

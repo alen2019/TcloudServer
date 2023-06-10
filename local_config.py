@@ -4,7 +4,8 @@ TCLOUD_ENV = 'dev'
 SERVER_ENV = 'dev'
 
 # SQL 连接字符串
-SQLALCHEMY_DATABASE_URI = 'mysql://<username>:<password>@<host>:<port>/<db>?charset=utf8'
+# SQLALCHEMY_DATABASE_URI = 'mysql://root:123456@192.168.8.70:3306/demo?charset=utf8'
+SQLALCHEMY_DATABASE_URI = 'mysql://root:123.com@192.168.8.115:3306/demo?charset=utf8'
 
 # 密钥相关
 SECRET = '####'
@@ -24,7 +25,7 @@ JOBS = [
 
 # redis 配置
 REDIS_HOST = 'localhost'
-REDIS_PORT = 32768
+REDIS_PORT = 6379
 REDIS_PASSWORD = ''
 REDIS_DB = 0
 
