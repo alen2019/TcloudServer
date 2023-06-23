@@ -5,7 +5,8 @@ import importlib
 import json
 
 # from app import scheduler
-from flask.json import JSONEncoder
+# from flask.json import JSONEncoder
+import json_encoder
 from httprunner import HttpRunner, loader, parser, utils
 
 # import httprunner
@@ -372,6 +373,7 @@ class RunCase(object):
                                                                'all_scene'] * 100))
 
         res['time']['start_at'] = now_time.strftime('%Y/%m/%d %H:%M:%S')
-        jump_res = json.dumps(res, ensure_ascii=False, default=encode_object, cls=JSONEncoder)
+        # jump_res = json.dumps(res, ensure_ascii=False, default=encode_object, cls=JSONEncoder)
+        jump_res = json.dumps(res, ensure_ascii=False, default=encode_object, cls=json_encoder)
         # scheduler.app.logger.info('返回数据：{}'.format(jump_res))
         return jump_res

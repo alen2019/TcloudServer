@@ -3,12 +3,14 @@
 import io
 import os
 from base64 import b64encode
-from collections import Iterable
+from collections.abc import Iterable
 from pathlib import Path
 
 from httprunner import logger
 from httprunner.compat import bytes, json, numeric_types
-from jinja2 import Template, escape
+from jinja2 import Template
+from markupsafe import escape
+
 
 
 def stringify_data(meta_data, request_or_response):
